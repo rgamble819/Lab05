@@ -87,23 +87,30 @@ public class Calculator
     protected static int calculateThreeTokens(String[] tokens)
             throws ArithmeticException, NumberFormatException, CalculatorException
     {
-    	/*if(tokens[0]) 
+    	int a = Integer.parseInt(tokens[0]);
+    	int b = Integer.parseInt(tokens[2]);
+    	
+    	if(tokens[1].equalsIgnoreCase("+") 
+    			|| tokens[1].equalsIgnoreCase("-") 
+    			|| tokens[1].equalsIgnoreCase("/")) 
     	{
-    		throw 
-    	}	
-    	else if()
-    	{
-    		
+    		if(tokens[1].equalsIgnoreCase("+")) 
+    		{
+    			return a + b;
+    		}
+    		else if(tokens[1].equalsIgnoreCase("-")) 
+    		{
+    			return a - b;
+    		}
+    		else
+    		{
+    			return a / b;
+    		}
     	}
-    	else if() 
+    	else 
     	{
-    		
+    		throw new CalculatorException("Illegal Command");
     	}
-    	else if() 
-    	{
-    		
-    	}*/
-    	return 0;
     }
 
     /**
@@ -158,10 +165,9 @@ public class Calculator
         	case 3: 
         		return calculateThreeTokens(tokens);
         	
-        	//default:
-        //		throw new CalculatorException("Illegal Token Length");	
+        	default:
+        		throw new CalculatorException("Illegal Token Length");
         }
-		return 0;
     }
 
     /**
