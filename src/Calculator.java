@@ -1,3 +1,5 @@
+import javax.sql.rowset.CachedRowSet;
+
 /**
  * A class representing a simple calculator. The calculator takes in an input string and interprets it as a command.
  * The calculator evaluates the command and returns a result.
@@ -34,8 +36,24 @@ public class Calculator
      */
     protected static int calculateTwoTokens(String[] tokens) throws NumberFormatException, CalculatorException
     {
+
         int a = Integer.parseInt(tokens[1]); // Throws NumberFormatException if the second token is not an int value.
-        // TODO: complete this...
+        
+        if(tokens[0].equalsIgnoreCase("halve") || tokens[0].equalsIgnoreCase("negate")) 
+        {
+        	if(tokens[0].equalsIgnoreCase("halve")) 
+        	{
+        		return (a / 2);
+        	}
+        	else 
+        	{
+        		return (-a);
+        	}
+        }
+        else 
+        {
+        	throw new CalculatorException("Illegal Command");
+        }
     }
 
     /**
@@ -69,7 +87,23 @@ public class Calculator
     protected static int calculateThreeTokens(String[] tokens)
             throws ArithmeticException, NumberFormatException, CalculatorException
     {
-        // TODO: complete this...
+    	/*if(tokens[0]) 
+    	{
+    		throw 
+    	}	
+    	else if()
+    	{
+    		
+    	}
+    	else if() 
+    	{
+    		
+    	}
+    	else if() 
+    	{
+    		
+    	}*/
+    	return 0;
     }
 
     /**
@@ -105,9 +139,29 @@ public class Calculator
         // Condition on the number of tokens (number of strings in user input separated by spaces)
         switch(tokens.length)
         {
-            // TODO: complete this...
+        	case 0:
+        		throw new CalculatorException("Illegal Token Length");
+        		
+        	case 1:
+        		if(tokens[0].toLowerCase().equalsIgnoreCase("quit")) 
+        		{
+        			return Integer.MIN_VALUE;
+        		}
+        		else 
+        		{
+        			throw new CalculatorException("Illegal Command");
+        		}
+        		
+        	case 2:
+        		return calculateTwoTokens(tokens);
+        		
+        	case 3: 
+        		return calculateThreeTokens(tokens);
+        	
+        	//default:
+        //		throw new CalculatorException("Illegal Token Length");	
         }
-
+		return 0;
     }
 
     /**
@@ -131,18 +185,42 @@ public class Calculator
      * e.g. A valid command would be "50 + 20". This will be split up (Tokenized) as an array of three Strings:
      * ["50", "+", "20"].
      * @return The following values are returned under the given conditions:
-     * (1) "quit" - if the program should end
-     * (2) "The result is: %d", where %d is replaced with the returned value of execute(tokens) - the command is
+     CHECK* (1) "quit" - if the program should end
+     CHECK* (2) "The result is: %d", where %d is replaced with the returned value of execute(tokens) - the command is
      * executed correctly and is not "quit".
-     * (3) "Attempted to divide by 0. Please try again." - an ArithmeticException has been caught.
-     * (4) "Input number cannot be parsed to an int. Please try again." - a NumberFormat has been caught.
-     * (5) "Calculator Exception, message is: %s", where %s is the message of a
+     CHECK* (3) "Attempted to divide by 0. Please try again." - an ArithmeticException has been caught.
+     CHECK* (4) "Input number cannot be parsed to an int. Please try again." - a NumberFormat has been caught.
+     CHECK* (5) "Calculator Exception, message is: %s", where %s is the message of a
      * CalculatorException - a CalculatorException has been caught.
      */
     public static String parseAndExecute(String input)
     {
-        // TODO: complete this...
-        // Hint: you should try and call execute(). If execute encounters an error, it will throw an exception. This
-        // method will catch those exceptions and respond accordingly.
+    	String[] tokens = input.split(" ");
+    	String  result = "";
+    	
+    	if(input.toLowerCase().equalsIgnoreCase("quit") )
+    	{
+    		return input;
+    	}
+    	
+		try 
+		{
+			result = String.format("The result is: %d", execute(tokens));
+		} 
+		catch (NumberFormatException e) 
+		{
+			return "Input number cannot be parsed to an int. Please try again.";
+		} 
+		catch (CalculatorException calcException) 
+		{
+			return "Calculator Exception, message is: " + calcException.getMessage();
+		} 
+		catch (ArithmeticException e) 
+		{
+			return "Attempted to divide by 0. Please try again.";
+		}
+		
+    	String output = "" + result;
+    	return output;
     }
 }
