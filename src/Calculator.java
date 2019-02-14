@@ -204,14 +204,15 @@ public class Calculator
     	String[] tokens = input.split(" ");
     	String  result = "";
     	
-    	if(input.toLowerCase().equalsIgnoreCase("quit") )
-    	{
-    		return input;
-    	}
-    	
 		try 
 		{
-			result = String.format("The result is: %d", execute(tokens));
+			int calc = execute(tokens);
+			result = String.format("The result is: %d", calc);
+			
+			if(calc == Integer.MIN_VALUE)
+			{
+				return "quit";
+			}
 		} 
 		catch (NumberFormatException e) 
 		{

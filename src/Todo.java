@@ -1,18 +1,18 @@
 public class Todo {/*
-Lab Section_________: XX
-Last Modified_______: 20XX-XX-XX
-OU ID_______________: XXXXXXXXX
-OU EMAIL____________: XXX@ou.edu
+Lab Section_________: 11
+Last Modified_______: 2019-02-14
+OU ID_______________: 113403757
+OU EMAIL____________: ryan.gamble.819@ou.edu
 
 Tasks:
-1. XXX
-2. XXX
+1. Calculator Methods
+2. Calculator Test
 
 Estimated Time (minutes):
-1. XXX
-2. XXx
+1. 90
+2. 90
 
 Actual Time (minutes):
-1. XXX
-2. XXX
+1. 100
+2. 80
 */}

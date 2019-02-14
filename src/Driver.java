@@ -39,6 +39,7 @@ public class Driver {
             if(result.equalsIgnoreCase("quit"))
             {
                 // Quit has been specified; end the program:
+            	System.out.println("quit");
                 break;
             }
             System.out.println(result);
